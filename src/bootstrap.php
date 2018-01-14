@@ -32,24 +32,25 @@ require '../src/lang/'.$_SESSION['lang'].'/global.php';
 // Reading current path
 if (!isset($_GET['q']))
 {
-    $block_content = PATH_CONTROLLER.'default.php';
-    $current_path = '';
+    $_GET['q'] = '';
 }
-else {
-    require '../src/config/routes.php';
-    $current_path = $_GET['q'];
-}
+
+require '../src/config/routes.php';
+$current_path = '';
 
 if ($load_template)
 {
-    // Loading additional blocks
-    $block_header = PATH_CONTROLLER . 'partials/header.php';
-    $block_footer = PATH_CONTROLLER . 'partials/footer.php';
-
     // Loading layout
-    require PATH_CONTROLLER . 'templates/'.(isset($template_name) ? $template_name : 'default.php');
+    require PATH_CONTROLLER . 'templates/'.(isset($template_name) ? $template_name.'.php' : 'default.php');
 }
 else
 {
     require $block_content;
+}
+
+if (isset($_GET['debug']) && $_GET['debug'] == $config['debug_key'])
+{
+    echo "<pre>";
+    echo 'Total memory used: '.memory_get_peak_usage(false);
+    echo "</pre>";
 }

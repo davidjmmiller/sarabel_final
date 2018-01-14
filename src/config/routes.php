@@ -6,13 +6,13 @@ switch ($_GET['q'])
         $block_content =  PATH_CONTROLLER.'lang_selector/lang.php';
         $load_template = false;
         break;
-    case 'default':
+    case '':
         $block_content =  PATH_CONTROLLER.'default.php';
         //$load_template = false;
         break;
     default:
         $block_content = PATH_CONTROLLER.'page_not_found.php';
-        // $template_name = 'blank.php';
+        //$template_name = 'blank';
         // $load_template = false;
         break;
 }
