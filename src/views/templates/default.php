@@ -22,7 +22,7 @@
                 <?php echo session_message(); ?>
             </div>
         <?php endif;?>
-        <?php require $block_content; ?>
+        <?php echo $block_content; ?>
         <?php require $block_footer;?>
     </div>
 

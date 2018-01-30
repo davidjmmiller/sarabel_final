@@ -40,6 +40,12 @@ $current_path = '';
 
 if ($load_template)
 {
+    // Loading first the block content
+    ob_start();
+    require $block_content;
+    $block_content = ob_get_contents();
+    ob_clean();
+
     // Loading layout
     require PATH_CONTROLLER . 'templates/'.(isset($template_name) ? $template_name.'.php' : 'default.php');
 }
