@@ -19,6 +19,7 @@ session_start();
 
 // Flags
 $load_template = true;
+$cache_expiration = 1;
 
 // Detecting language
 if (!isset($_SESSION['lang'])){
@@ -30,9 +31,6 @@ if (!isset($_GET['q']))
 {
     $_GET['q'] = '';
 }
-
-// Default cache expiration
-$cache_expiration = 1;
 
 require '../src/config/routes.php';
 $current_path = '';
