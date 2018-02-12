@@ -1,16 +1,18 @@
 <?php
 
-// Loading config files
-require '../src/config/global.php';
-require '../src/config/database.php';
-require '../src/config/email.php';
-
 // Paths
 define('PATH_SOURCE','../src/');
 define('PATH_VIEW',PATH_SOURCE.'views/');
 define('PATH_CONTROLLER',PATH_SOURCE.'controllers/');
 define('PATH_MODEL',PATH_SOURCE.'models/');
+define('PATH_LIB',PATH_SOURCE.'lib/');
 define('PATH_LANG',PATH_SOURCE.'lang/');
+define('PATH_CONFIG',PATH_SOURCE.'config/');
+
+// Loading config files
+require PATH_CONFIG.'global.php';
+require PATH_CONFIG.'database.php';
+require PATH_CONFIG.'email.php';
 
 // Initializing session
 session_start();
@@ -48,9 +50,7 @@ if (file_exists($filename) && $page_cache_expiration > date('YmdHis')){
 else {
 
     // Loading libraries
-    require '../src/lib/util.php';
-    require '../src/lib/database.php';
-    require '../src/lib/mail.php';
+    require PATH_CONFIG.'libraries.php';
 
     // Loading global language file
     require PATH_LANG.$_SESSION['lang'].'/global.php';
