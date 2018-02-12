@@ -25,6 +25,7 @@ switch ($_GET['q'])
     default:
         $block_content = PATH_CONTROLLER.'page_not_found.php';
         $_GET['q'] = 'page_not_found';
+        $cache_expiration = 10;
         //$template_name = 'blank';
         // $load_template = false;
         break;

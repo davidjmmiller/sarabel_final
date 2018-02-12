@@ -31,9 +31,15 @@ if (!isset($_GET['q']))
     $_GET['q'] = '';
 }
 
+// Default cache expiration
+$cache_expiration = 1;
+
 require '../src/config/routes.php';
 $current_path = '';
-$filename = '../cache/pages/'.$_SESSION['lang'].'-'.str_replace('/','-',$_GET['q']).'-'.str_replace(array('=','?','&'),'-',$_SERVER['QUERY_STRING']).'.tmp';
+$filename = '../cache/pages/'.$_SESSION['lang'].'-';
+$filename .= ($_GET['q'] == 'page_not_found' ? 'page_not_found' : str_replace('/','-',$_GET['q']).'-');
+$filename .= ($_GET['q'] == 'page_not_found' ? '' : str_replace(array('=','?','&','/'),'-',$_SERVER['QUERY_STRING']));
+$filename .= '.tmp';
 
 if (file_exists($filename.'.info')){
     $page_cache_expiration = file_get_contents($filename.'.info');
