@@ -4,7 +4,7 @@ switch ($_GET['q'])
 {
     case 'demo':
         $block_content =  PATH_CONTROLLER.'demo/index.php';
-        $load_template = false;
+        $load_template = true;
         $cache_expiration = 0;
         break;
     case 'lang':
