@@ -29,4 +29,13 @@ class html {
     public function badge_light($message){ return $this->badge_output('light',$message); }
     public function badge_dark($message){ return $this->badge_output('dark',$message); }
 
+    public function input($params){
+        return '<label for="validationServer01">First name</label>
+            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>';
+
+    }
 }
+

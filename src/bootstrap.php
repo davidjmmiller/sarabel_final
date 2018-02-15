@@ -32,7 +32,7 @@ if (!isset($_GET['q']))
     $_GET['q'] = '';
 }
 
-require '../src/config/routes.php';
+require PATH_CONFIG.'routes.php';
 $current_path = '';
 $filename = '../cache/pages/'.$_SESSION['lang'].'-';
 $filename .= ($_GET['q'] == 'page_not_found' ? 'page_not_found' : str_replace('/','-',$_GET['q']).'-');
@@ -83,6 +83,7 @@ else {
         echo $page_output;
 
     } else {
+
         // Caching block content
         ob_start();
         require $block_content;
