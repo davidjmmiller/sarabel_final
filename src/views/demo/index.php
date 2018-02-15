@@ -1,5 +1,12 @@
 <h1>DEMO</h1>
-<?php echo $html->alert_danger('This is a test '.$html->badge_info('New')); ?>
+<?php echo $html->alert_danger('This is a test '.$html->badge_info('New'));
+$input = new \tools\htmlInput();
+$input->id = 'firstName';
+$input->label = 'First name';
+echo $html->input($input);
+
+?>
+
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -32,18 +39,27 @@
 <form class="needs-validation" novalidate>
     <div class="form-row">
         <div class="col-md-4 mb-3">
-            <label for="validationCustom01">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" placeholder="First name" value="Mark" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+        <?php
+            $input = new \tools\htmlInput();
+            $input->id = 'firstName';
+            $input->label = 'First name';
+            $input->value = 'David';
+            $input->feedback_valid = 'Looks ok!';
+            $input->feedback_invalid = 'This field is required';
+            echo $html->input($input);
+        ?>
+
         </div>
         <div class="col-md-4 mb-3">
-            <label for="validationCustom02">Last name</label>
-            <input type="text" class="form-control" id="validationCustom02" placeholder="Last name" value="Otto" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
+            <?php
+            $input = new \tools\htmlInput();
+            $input->id = 'lastName';
+            $input->label = 'Last name';
+            $input->value = 'Madrigal Miller';
+            $input->feedback_valid = 'Looks ok!';
+            $input->feedback_invalid = 'This field is required';
+            echo $html->input($input);
+            ?>
         </div>
         <div class="col-md-4 mb-3">
             <label for="validationCustomUsername">Username</label>

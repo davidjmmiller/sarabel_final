@@ -29,13 +29,33 @@ class html {
     public function badge_light($message){ return $this->badge_output('light',$message); }
     public function badge_dark($message){ return $this->badge_output('dark',$message); }
 
-    public function input($params){
-        return '<label for="validationServer01">First name</label>
-            <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+    public function input(htmlInput $params){
+        return '<label for="'.$params->label.'">'.$params->label.'</label>
+            <input type="'.$params->type.'" class="form-control '.($params->is_valid?'is-valid':'').'"
+                id="'.$params->id.'" placeholder="'.$params->placeholder.'" value="'.$params->value.'"
+                '.($params->required?'required':'').' name="'.$params->id.'">
             <div class="valid-feedback">
-                Looks good!
+                '.$params->feedback_valid.'
+            </div>
+            <div class="invalid-feedback">
+                '.$params->feedback_invalid.'
             </div>';
 
     }
 }
 
+class htmlInput {
+    public $id = 'inputFieldId';
+    public $type = 'text';
+    public $label = '';
+    public $value = '';
+    public $is_valid = false;
+    public $placeholder = '';
+    public $required = true;
+    public $feedback_valid = '';
+    public $feedback_invalid = '';
+
+    public function __construct(){
+        $this->value = ($_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST[$this->id] : '');
+    }
+}
