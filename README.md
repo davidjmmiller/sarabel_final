@@ -9,5 +9,4 @@ Features:
 - Block Loading
 - Low memory consume
 - Easy to understand
-- Zero Classes!!!
 - Cache system
