@@ -31,14 +31,16 @@ class html {
 
     public function input(htmlInput $params){
         return '<label for="'.$params->label.'">'.$params->label.'</label>
-            <input type="'.$params->type.'" class="form-control '.($params->is_valid?'is-valid':'').'"
-                id="'.$params->id.'" placeholder="'.$params->placeholder.'" value="'.$params->value.'"
-                '.($params->required?'required':'').' name="'.$params->id.'">
-            <div class="valid-feedback">
-                '.$params->feedback_valid.'
-            </div>
-            <div class="invalid-feedback">
-                '.$params->feedback_invalid.'
+            <div class="input-group">
+                <input type="'.$params->type.'" class="form-control '.($params->is_valid?'is-valid':'').'"
+                    id="'.$params->id.'" placeholder="'.$params->placeholder.'" value="'.$params->value.'"
+                    '.($params->required?'required':'').' name="'.$params->id.'">
+                <div class="valid-feedback">
+                    '.$params->feedback_valid.'
+                </div>
+                <div class="invalid-feedback">
+                    '.$params->feedback_invalid.'
+                </div>
             </div>';
 
     }
