@@ -108,6 +108,14 @@ echo $html->input($input);
             </div>
         </div>
     </div>
+    <?php
+    $textarea = new \tools\textArea();
+    $textarea->label = 'Prueba de cuadro de texto:';
+    $textarea->id = 'bloque-texto';
+    $textarea->rows = 3;
+    echo $html->textarea($textarea);
+
+    ?>
     <button class="btn btn-primary" type="submit">Submit form</button>
 </form>
 

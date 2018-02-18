@@ -30,7 +30,9 @@ class html {
     public function badge_dark($message){ return $this->badge_output('dark',$message); }
 
     public function input(htmlInput $params){
-        return '<label for="'.$params->label.'">'.$params->label.'</label>
+        return '
+        <div class="form-group">
+            <label for="'.$params->id.'">'.$params->label.'</label>
             <div class="input-group">
                 <input type="'.$params->type.'" class="form-control '.($params->is_valid?'is-valid':'').'"
                     id="'.$params->id.'" placeholder="'.$params->placeholder.'" value="'.$params->value.'"
@@ -41,9 +43,21 @@ class html {
                 <div class="invalid-feedback">
                     '.$params->feedback_invalid.'
                 </div>
-            </div>';
-
+            </div>
+        </div>';
     }
+
+    public function textarea(textArea $params){
+        return '
+        <div class="form-group">
+            <label for="'.$params->id.'">'.$params->label.'</label>
+            <textarea class="form-control" id="'.$params->id.'"
+                rows="'.$params->rows.'" value="'.$params->value.'" '.($params->required?'required':'').'
+                name="'.$params->id.'">'.$params->value.'</textarea>
+        </div>';
+    }
+
+
 }
 
 class htmlInput {
@@ -51,6 +65,22 @@ class htmlInput {
     public $type = 'text';
     public $label = '';
     public $value = '';
+    public $is_valid = false;
+    public $placeholder = '';
+    public $required = true;
+    public $feedback_valid = '';
+    public $feedback_invalid = '';
+
+    public function __construct(){
+        $this->value = ($_SERVER['REQUEST_METHOD'] == 'POST' ? $_POST[$this->id] : '');
+    }
+}
+
+class textArea {
+    public $id = 'inputFieldId';
+    public $label = '';
+    public $value = '';
+    public $rows = 3;
     public $is_valid = false;
     public $placeholder = '';
     public $required = true;
