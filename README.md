@@ -7,7 +7,6 @@ Features:
 - MVC Pattern
 - Secure Routing System
 - Block Loading
-- Not ob_* functions used
 - Low memory consume
 - Easy to understand
-- Zero Classes!!!
+- Cache system
