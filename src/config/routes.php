@@ -2,6 +2,11 @@
 
 switch ($_GET['q'])
 {
+    case 'js-integration':
+        $block_content =  PATH_CONTROLLER.'js-integration/index.php';
+        $load_template = false;
+        $cache_expiration = 0;
+        break;
     case 'demo':
         $block_content =  PATH_CONTROLLER.'demo/index.php';
         $load_template = true;
