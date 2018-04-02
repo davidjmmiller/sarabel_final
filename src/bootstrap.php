@@ -1,5 +1,8 @@
 <?php
 
+// Statistics
+$start_time = microtime(true);
+
 // Paths
 define('PATH_SOURCE','../src/');
 define('PATH_VIEW',PATH_SOURCE.'views/');
@@ -47,7 +50,7 @@ else {
 }
 
 // Checking cache if the page already exists
-if (file_exists($filename) && $page_cache_expiration > date('YmdHis')){
+if ($config['cache_enable'] && file_exists($filename) && $page_cache_expiration > date('YmdHis')){
     $page_output = file_get_contents($filename);
     echo $page_output;
 }
@@ -73,12 +76,16 @@ else {
         $page_output = ob_get_contents();
         ob_clean();
 
-        // Storing page in the cache folder
-        file_put_contents($filename, $page_output);
+        if ($config['cache_enable']) {
 
-        // Storing expiration time
-        $next_load = date('YmdHis',mktime(date('H'),date('i')+$cache_expiration,date('s'),date('m'),date('d'),date('Y')));
-        file_put_contents($filename.'.info', $next_load);
+            // Storing page in the cache folder
+            file_put_contents($filename, $page_output);
+
+            // Storing expiration time
+            $next_load = date('YmdHis', mktime(date('H'), date('i') + $cache_expiration, date('s'), date('m'), date('d'), date('Y')));
+            file_put_contents($filename . '.info', $next_load);
+
+        }
 
         echo $page_output;
 
@@ -97,7 +104,14 @@ else {
 
 if (isset($_GET['debug']) && $_GET['debug'] == $config['debug_key'])
 {
+    // Statistics
+    $end_time = microtime(true);
+
     echo "<pre>";
-    echo 'Total memory used: '.memory_get_peak_usage(false);
+    echo 'Total memory used: '.round(memory_get_peak_usage(false) / 1024,2).'KB'.PHP_EOL;
+    echo 'Duration: '.round($end_time-$start_time,4).'ms'.PHP_EOL;
     echo "</pre>";
+
+    // Statistics
+    $end_time = microtime();
 }

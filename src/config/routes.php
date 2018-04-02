@@ -19,7 +19,7 @@ switch ($_GET['q'])
         break;
     case '':
         $block_content =  PATH_CONTROLLER.'default.php';
-        //$load_template = false;
+        $load_template = true;
         $cache_expiration = 1;
         break;
     default:
